@@ -1,0 +1,50 @@
+สำหรับการใช้งานบน Debian Trixie คุณไม่จำเป็นต้องใช้ WSL เหมือนใน Windows ครับ คุณสามารถรันทุกอย่างได้โดยตรงผ่าน Terminal ของ Debian ได้เลย โดยมีขั้นตอนดังนี้ครับ
+## 1. ติดตั้ง Node.js และ npm
+Claude Code ต้องใช้ Node.js เวอร์ชั่น 18 ขึ้นไป: [1, 2] 
+
+sudo apt update
+sudo apt install nodejs npm -y
+
+## 2. ติดตั้ง Claude Code
+รันคำสั่งติดตั้งตัวเอเจนต์หลัก: [2] 
+
+npm install -g @anthropic-ai/claude-code
+
+## 3. ติดตั้ง uv (Python Package Manager)
+คุณต้องใช้ uv เพื่อรันตัว Proxy Server ของ NVIDIA NIM บน Debian Trixie แนะนำให้ติดตั้งผ่านสคริปต์หลักเพื่อให้ได้เวอร์ชั่นล่าสุด: [3, 4] 
+
+curl -LsSf https://astral.sh | sh
+source $HOME/.cargo/env
+
+## 4. ตั้งค่า Proxy สำหรับ NVIDIA NIM
+
+   1. Clone โปรเจกต์: (ใช้ Repo จากในคลิปที่คุณดู)
+   
+   git clone https://github.com/Alishahryar1/free-claude-code.git
+   cd free-claude-code
+   
+   2. ตั้งค่า API Key: คัดลอกไฟล์ .env.example เป็น .env แล้วใส่ NVIDIA API Key ที่คุณสมัครไว้
+   3. รันเซิร์ฟเวอร์:
+   
+   uv run uvicorn server:app --host 0.0.0.0 --port 8082
+   
+   [5, 6, 7] 
+
+## 5. เปิดใช้งาน Claude Code
+เปิด Terminal ใหม่ขึ้นมาอีกหน้าต่างหนึ่ง แล้วรันคำสั่งเพื่อเชื่อมต่อกับ Proxy ที่เราเปิดไว้: [6, 7] 
+
+export ANTHROPIC_AUTH_TOKEN="freecc"
+export ANTHROPIC_BASE_URL="http://localhost:8082"
+claude
+
+สรุปความต่าง: ใน Debian Trixie คุณข้ามขั้นตอนการติดตั้ง WSL ไปได้เลย และใช้คำสั่ง apt หรือ curl ในการจัดการแพ็กเกจโดยตรง ซึ่งจะทำงานได้เร็วและเสถียรกว่าบน Windows ครับ
+มีขั้นตอนไหนที่ ติด Error ระหว่างพิมพ์คำสั่ง ใน Terminal ไหมครับ?
+
+[1] [https://code.claude.com](https://code.claude.com/docs/en/setup)
+[2] [https://stevekinney.com](https://stevekinney.com/courses/ai-development/installing-claude-code)
+[3] [https://dario.griffo.io](https://dario.griffo.io/posts/how-to-install-uv-debian/)
+[4] [https://debian.griffo.io](https://debian.griffo.io/install-latest-uv-in-debian.html)
+[5] [https://github.com](https://github.com/diyism/cc-nim)
+[6] [https://medium.com](https://medium.com/coding-nexus/free-claude-code-run-claude-code-without-an-api-key-using-nvidia-43764cfa8a90)
+[7] [https://medium.com](https://medium.com/coding-nexus/free-claude-code-run-claude-code-without-an-api-key-using-nvidia-43764cfa8a90)
+

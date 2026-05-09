@@ -1,0 +1,22 @@
+นี่คือสรุปวิธีการใช้งาน Claude Code ฟรีแบบไม่จำกัด โดยใช้ NVIDIA NIM API ซึ่งเป็นวิธีที่ช่วยให้คุณรันเอเจนต์ตัวนี้ได้โดยไม่ต้องมีคอมพิวเตอร์สเปกแรงครับ
+## มันคือเรื่องจริงไหม?
+จริงครับ วิธีนี้เป็นการเปลี่ยนการประมวลผลจากเครื่องเราไปไว้บนคลาวด์ของ NVIDIA แทน โดยใช้โมเดล Open Source ระดับท็อป (เช่น DeepSeek หรือ GLM) ที่รองรับผ่าน NVIDIA NIM API ทำให้ใช้งาน Claude Code ได้ฟรีโดยไม่มีข้อจำกัดเรื่องจำนวนการใช้งานต่อวัน (มีเพียงข้อจำกัดความถี่ในการส่งคำสั่งที่ 40 ครั้งต่อนาที ซึ่งถือว่าเยอะมากสำหรับการเขียนโค้ด) ([1:28](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=88s))
+------------------------------
+## วิธีทำแบบย่อ (สำหรับ Windows)
+
+   1. ติดตั้ง WSL 2 & Ubuntu: เปิด PowerShell พิมพ์ wsl --install แล้วติดตั้ง Ubuntu จาก Microsoft Store ([9:26](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=566s))
+   2. รับ API Key: ไปที่เว็บไซต์ NVIDIA NIM สมัครสมาชิก และสร้าง API Key ฟรี ([13:18](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=798s))
+   3. เตรียมสภาพแวดล้อม: ใน Ubuntu ให้ติดตั้ง UV และ Python ตามคำแนะนำในคลิป ([12:05](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=725s))
+   4. ดาวน์โหลดโปรเจกต์: Clone Repository "NVIDIA NIM" จากลิงก์ในคำอธิบายใต้คลิป ([12:25](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=745s))
+   5. ตั้งค่า API: แก้ไขไฟล์ .env โดยใส่ API Key ที่ได้มา และเลือกโมเดล (แนะนำ deepseek-v3 หรือ glm-4) ([13:55](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=835s))
+   6. รันเซิร์ฟเวอร์: พิมพ์คำสั่งรัน NVIDIA NIM Server ทิ้งไว้ใน Terminal แรก ([15:02](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=902s))
+   7. เปิดใช้งาน Claude Code: เปิด Terminal ที่สอง แล้วรัน Claude Code โดยเชื่อมต่อกับ Localhost ที่เราสร้างขึ้น ([16:25](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=985s))
+
+------------------------------
+## ข้อควรระวัง
+
+* คุณต้อง เปิดเซิร์ฟเวอร์ NVIDIA NIM ทิ้งไว้เบื้องหลัง เสมอในขณะใช้งาน Claude Code ([17:55](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=1075s))
+* หากเจอข้อผิดพลาดในช่วงเวลาที่มีผู้ใช้งานเยอะ (Peak Hours) ผู้สอนแนะนำให้ดูคลิปทางเลือกสำรองในช่องของเขาครับ ([19:05](https://www.youtube.com/watch?v=7_bmIT8HZXI&t=1145s))
+
+
+
