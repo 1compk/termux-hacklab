@@ -16,11 +16,12 @@ sudo npm install -g @openai/codex
 
    1. ติดตั้ง Ollama: รันคำสั่งสั้นๆ ใน Terminal:
    
-   curl -fsSL https://ollama.com | sh
+   curl -fsSL https://ollama.com/install.sh | sh
    
    2. ดาวน์โหลดโมเดล: เลือกโมเดลที่รองรับการใช้เครื่องมือ (Tools) เช่น Qwen 2.5 (วิดีโอแนะนำตัวนี้เพราะมีประสิทธิภาพดีและใช้ทรัพยากรน้อย ([2:54](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=174s))):
    
-   ollama pull qwen2.5:0.5b
+   ollama list | grep qwen
+   ollama pull qwen3.6:27b
    
    
 ## 4. เชื่อมต่อ Codex กับ Ollama
