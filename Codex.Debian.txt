@@ -1,0 +1,45 @@
+สำหรับการใช้งานบน Debian Trixie โดยอ้างอิงจากวิดีโอที่คุณส่งมาล่าสุด (ซึ่งในวิดีโอแนะนำการใช้ Codex ร่วมกับ Ollama) มีขั้นตอนที่สามารถทำได้จริงและฟรีดังนี้ครับ:
+## 1. ติดตั้ง Node.js (จำเป็นสำหรับ npm)
+เนื่องจากต้องใช้ npm ในการติดตั้ง Codex ([0:45](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=45s)) ให้รันคำสั่งใน Terminal:
+
+sudo apt update
+sudo apt install -y nodejs npm
+
+## 2. ติดตั้ง Codex CLI
+ติดตั้งเครื่องมือ Codex แบบ Global เพื่อให้เรียกใช้งานได้จากทุกที่ ([1:06](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=66s)):
+
+sudo npm install -g @openai/codex
+
+หลังจากติดตั้งเสร็จ สามารถลองพิมพ์ codex --help เพื่อเช็คความพร้อม ([1:25](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=85s))
+## 3. ติดตั้งและตั้งค่า Ollama (เพื่อรันโมเดลฟรีในเครื่อง)
+วิดีโอแนะนำให้ใช้ Ollama เพื่อรันโมเดล AI โดยไม่ต้องเสียค่าบริการ ([1:37](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=97s)):
+
+   1. ติดตั้ง Ollama: รันคำสั่งสั้นๆ ใน Terminal:
+   
+   curl -fsSL https://ollama.com | sh
+   
+   2. ดาวน์โหลดโมเดล: เลือกโมเดลที่รองรับการใช้เครื่องมือ (Tools) เช่น Qwen 2.5 (วิดีโอแนะนำตัวนี้เพราะมีประสิทธิภาพดีและใช้ทรัพยากรน้อย ([2:54](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=174s))):
+   
+   ollama pull qwen2.5:0.5b
+   
+   
+## 4. เชื่อมต่อ Codex กับ Ollama
+เพื่อให้ Codex รู้ว่าต้องไปเรียกใช้ AI จาก Ollama ในเครื่องเรา ([4:00](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=240s)):
+
+   1. สร้างโฟลเดอร์สำหรับโปรเจกต์ของคุณแล้วเข้าไปในนั้น ([4:14](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=254s)):
+   
+   mkdir my-ai-project && cd my-ai-project
+   
+   2. รันคำสั่งเพื่อเริ่มใช้งาน Codex โดยระบุโมเดลจาก Ollama:
+   
+   codex --model ollama/qwen2.5:0.5b
+   
+   
+## 5. เริ่มสั่งงาน AI
+เมื่อเข้าสู่หน้าจอ Codex แล้ว คุณสามารถพิมพ์สั่งให้ AI เขียนโค้ดได้ทันที เช่น:
+
+* "สร้างหน้า Login สวยๆ ด้วย HTML และ CSS ในไฟล์เดียว" ([4:37](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=277s))
+* AI จะสร้างไฟล์โค้ดลงในโฟลเดอร์ที่คุณอยู่ให้โดยอัตโนมัติ ([5:26](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=326s))
+
+สรุปเหตุผลที่ทำได้จริง: วิธีนี้เป็นการใช้ OpenAI Codex (ตัวฟรี) ([5:58](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=358s)) มาเชื่อมต่อกับ Ollama ที่รันโมเดล AI ในเครื่องเราเอง ทำให้ใช้งานได้ไม่จำกัดและไม่ต้องเสียเงินค่า API ครับ ([6:08](https://www.youtube.com/watch?v=vtamJ-6l6O0&t=368s))
+
